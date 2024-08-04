@@ -15,4 +15,9 @@ public class UserService implements IUserService {
         users.add(User.builder().build());
         return users;
     }
+
+    @Override
+    public User getUserById(Long id){
+        return User.builder().id(id).build();
+    }
 }
