@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,7 +47,7 @@ class UserControllerTest {
         mockUser.setName("John Doe");
 
         // Configurar el mock
-        when(userService.getUserById(1L)).thenReturn(mockUser);
+        when(userService.getUserById(1L)).thenReturn(Optional.of(mockUser));
 
         // Realizar la solicitud y verificar el resultado
         mockMvc.perform(get("/users/1"))
