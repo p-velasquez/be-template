@@ -4,7 +4,8 @@ import cl.template.models.User;
 import cl.template.service.user.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.anyLong;
+import static java.lang.Integer.parseInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -39,30 +40,52 @@ class UserControllerTest {
         closeable.close();
     }
 
-    @Test
-    void testGetUserById() throws Exception {
+    /*
+    CASO 1: EXITOSO
+    CASO 2: NO EXISTENTE
+     */
+    @RepeatedTest(2)
+    void testGetUserById(RepetitionInfo repetitionInfo) throws Exception {
+        // Obtener el índice de repetición actual
+        int repetition = repetitionInfo.getCurrentRepetition();
+
         // Datos de prueba
-        User mockUser = new User();
-        mockUser.setId(1L);
-        mockUser.setName("John Doe");
+        User mockUser = User.builder()
+                .id(1L)
+                .email("john.doe@example.com")
+                .name("John Doe")
+                .password("password123")
+                .role("Admin")
+                .username("john.doe")
+                .build();
 
-        // Configurar el mock
-        when(userService.getUserById(1L)).thenReturn(Optional.of(mockUser));
+        switch (repetition) {
+            case 1:
+                // Configurar el mock para el caso en que el usuario existe
+                when(userService.getUserById(1L)).thenReturn(Optional.of(mockUser));
 
-        // Realizar la solicitud y verificar el resultado
-        mockMvc.perform(get("/users/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value("John Doe"));
-    }
+                // Realizar la solicitud y verificar el resultado
+                mockMvc.perform(get("/users/1"))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$.id").value(mockUser.getId()))
+                        .andExpect(jsonPath("$.name").value(mockUser.getName()))
+                        .andExpect(jsonPath("$.email").value(mockUser.getEmail()))
+                        .andExpect(jsonPath("$.password").value(mockUser.getPassword()))
+                        .andExpect(jsonPath("$.role").value(mockUser.getRole()))
+                        .andExpect(jsonPath("$.username").value(mockUser.getUsername()));
+                break;
 
-    @Test
-    void testGetUserById_NotFound() throws Exception {
-        // Configurar el mock para devolver null
-        when(userService.getUserById(anyLong())).thenReturn(null);
+            case 2:
+                // Configurar el mock para el caso en que el usuario no existe
+                when(userService.getUserById(1L)).thenReturn(Optional.empty());
 
-        // Realizar la solicitud y verificar el resultado
-        mockMvc.perform(get("/users/1"))
-                .andExpect(status().isNotFound());
+                // Realizar la solicitud y verificar el resultado
+                mockMvc.perform(get("/users/1"))
+                        .andExpect(status().isNotFound());
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + repetition);
+        }
     }
 }
