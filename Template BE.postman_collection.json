@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "a1bdeef6-576b-4113-aa54-9b38f4a3fdbc",
+		"name": "Template BE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25228609"
+	},
+	"item": [
+		{
+			"name": "Check Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/health",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n           \"id\": 1,\n           \"name\": \"John Doe\",\n           \"username\": \"johndoe\",\n           \"password\": \"password123\",\n           \"email\": \"john.doe@example.com\",\n           \"phone\": \"123-456-7890\",\n           \"role\": \"user\"\n         }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/users \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n           \"id\": 1,\n           \"name\": \"John Doe\",\n           \"username\": \"johndoe\",\n           \"password\": \"password123\",\n           \"email\": \"john.doe@example.com\",\n           \"phone\": \"123-456-7890\",\n           \"role\": \"user\"\n         }'\n"
+			},
+			"response": []
+		}
+	]
+}
