@@ -9,4 +9,6 @@ public interface IUserService {
     List<User> getUsers();
     Optional<User> getUserById(Long id);
     void createUser(User user);
-    }
+    String getMyPokemonById(Long id);
+
+}

@@ -56,4 +56,8 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/pokemon/{id}")
+    public ResponseEntity<String> getMyPokemonById(@PathVariable Long id) {
+        return ResponseEntity.ok(iUserService.getMyPokemonById(id));
+    }
 }

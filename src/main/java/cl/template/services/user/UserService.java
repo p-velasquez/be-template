@@ -1,8 +1,11 @@
 package cl.template.services.user;
 
 import cl.template.exceptions.UserAlreadyExistsException;
+import cl.template.integrations.pokemon.IPokemonService;
+import cl.template.integrations.pokemon.Pokemon;
 import cl.template.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,9 @@ public class UserService implements IUserService {
 
     @Value("${user.file.path}")
     private String filePath;
+
+    @Autowired
+    IPokemonService iPokemonService;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -43,7 +49,6 @@ public class UserService implements IUserService {
         }
     }
 
-
     @Override
     public void createUser(User user) {
         try {
@@ -61,6 +66,12 @@ public class UserService implements IUserService {
         } catch (IOException e) {
             throw new RuntimeException("Error saving user", e);
         }
+    }
+
+    @Override
+    public String getMyPokemonById(Long id){
+        Pokemon pokemon = iPokemonService.getPokemonByNameOrId(id.toString()).block();
+        return pokemon != null ? "Your pokemon is: ".concat(pokemon.getName()) : null;
     }
 
 }
