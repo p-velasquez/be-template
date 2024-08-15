@@ -1,4 +1,4 @@
-# Base Project Template
+# Base Project Back End Template
 
 This project serves as a foundation for starting any new Spring Boot project, incorporating best practices and a well-structured design. The aim is to provide a flexible and efficient base to build upon, helping developers focus on business logic without worrying about the initial setup and configuration.
 
@@ -28,5 +28,5 @@ This project serves as a foundation for starting any new Spring Boot project, in
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/base-project-template.git
-   cd base-project-template
+   git clone https://github.com/p-velasquez/be-template.git
+   cd be-template
