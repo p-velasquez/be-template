@@ -15,8 +15,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    @Autowired
+
     private IUserService iUserService;
+
+    @Autowired
+    public void setIUserService(IUserService iUserService) {
+        this.iUserService = iUserService;
+    }
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {

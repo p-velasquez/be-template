@@ -21,8 +21,12 @@ public class UserService implements IUserService {
     @Value("${user.file.path}")
     private String filePath;
 
+    private IPokemonService iPokemonService;
+
     @Autowired
-    IPokemonService iPokemonService;
+    public void setIPokemonService(IPokemonService iPokemonService) {
+        this.iPokemonService = iPokemonService;
+    }
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
