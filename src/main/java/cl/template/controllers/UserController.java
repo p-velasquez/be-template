@@ -4,7 +4,7 @@ import cl.template.controllers.response.BaseResponse;
 import cl.template.enums.ResponseCode;
 import cl.template.exceptions.UserAlreadyExistsException;
 import cl.template.models.User;
-import cl.template.service.user.IUserService;
+import cl.template.services.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

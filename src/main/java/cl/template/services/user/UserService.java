@@ -1,4 +1,4 @@
-package cl.template.service.user;
+package cl.template.services.user;
 
 import cl.template.exceptions.UserAlreadyExistsException;
 import cl.template.models.User;
