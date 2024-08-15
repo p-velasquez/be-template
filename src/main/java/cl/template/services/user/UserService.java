@@ -37,9 +37,9 @@ public class UserService implements IUserService {
             List<User> users = getUsers();
             return users.stream()
                     .filter(user -> user.getId().equals(id))
-                    .findFirst(); // Encuentra el primer usuario con el ID, o devuelve un Optional vacío si no lo encuentra
+                    .findFirst();
         } catch (Exception e) {
-            return Optional.empty(); // Devuelve Optional vacío en caso de error
+            return Optional.empty();
         }
     }
 
@@ -49,16 +49,16 @@ public class UserService implements IUserService {
         try {
             List<User> users = getUsers();
             boolean userExists = users.stream()
-                    .anyMatch(existingUser -> existingUser.getId().equals(user.getId()));
+                    .anyMatch(existingUser -> existingUser.getId().equals(user.getId())
+                            || existingUser.getUsername().equals(user.getUsername()));
 
             if (userExists) {
                 throw new UserAlreadyExistsException("User with ID " + user.getId() + " already exists.");
             }
 
-            users.add(user); // Agregar el nuevo usuario a la lista
-            objectMapper.writeValue(new File(filePath), users); // Guardar la lista actualizada
+            users.add(user);
+            objectMapper.writeValue(new File(filePath), users);
         } catch (IOException e) {
-            e.printStackTrace();
             throw new RuntimeException("Error saving user", e);
         }
     }
