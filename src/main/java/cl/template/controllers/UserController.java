@@ -36,10 +36,10 @@ public class UserController {
         try {
             // Asume que UserAlreadyExistsException se lanza si el usuario ya existe
             iUserService.createUser(user);
-            return ResponseEntity.status(ResponseCode.SUCCESS.getHttpStatus())
+            return ResponseEntity.status(ResponseCode.USER_CREATED.getHttpStatus())
                     .body(BaseResponse.builder()
-                            .code(ResponseCode.SUCCESS.getCode())
-                            .message(ResponseCode.SUCCESS.getMessage())
+                            .code(ResponseCode.USER_CREATED.getCode())
+                            .message(ResponseCode.USER_CREATED.getMessage())
                             .build());
         } catch (UserAlreadyExistsException e) {
             return ResponseEntity.status(ResponseCode.USER_ALREADY_EXISTS.getHttpStatus())
