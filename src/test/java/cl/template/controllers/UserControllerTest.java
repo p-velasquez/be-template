@@ -58,13 +58,14 @@ class UserControllerTest {
                 .username("john.doe")
                 .build();
 
+        String PATH = "/user";
         switch (repetition) {
             case 1:
                 // Configurar el mock para el caso en que el usuario existe
                 when(userService.getUserById(1L)).thenReturn(Optional.of(mockUser));
 
                 // Realizar la solicitud y verificar el resultado
-                mockMvc.perform(get("/users/1"))
+                mockMvc.perform(get(PATH.concat("/1")))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$.id").value(mockUser.getId()))
                         .andExpect(jsonPath("$.name").value(mockUser.getName()))
@@ -79,7 +80,7 @@ class UserControllerTest {
                 when(userService.getUserById(1L)).thenReturn(Optional.empty());
 
                 // Realizar la solicitud y verificar el resultado
-                mockMvc.perform(get("/users/1"))
+                mockMvc.perform(get(PATH.concat("/1")))
                         .andExpect(status().isNotFound());
                 break;
 
