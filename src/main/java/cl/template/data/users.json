@@ -1,1 +1,47 @@
-[{"id":1,"name":"John Doe","username":"johndoe","password":"password123","email":"john.doe@example.com","phone":"555-1234","role":"USER"},{"id":2,"name":"Jane Smith","username":"janesmith","password":"password456","email":"jane.smith@example.com","phone":"555-5678","role":"ADMIN"},{"id":3,"name":"Alice Johnson","username":"alicejohnson","password":"password789","email":"alice.johnson@example.com","phone":"555-9876","role":"USER"},{"id":4,"name":"John Doe","username":"lallalala","password":"password123","email":"john.doe@example.com","phone":"123-456-7890","role":"user"},{"id":5,"name":"John Doe","username":"s,dkd","password":"password123","email":"john.doe@example.com","phone":"123-456-7890","role":"user"}]
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "username": "johndoe",
+    "password": "password123",
+    "email": "john.doe@example.com",
+    "phone": "555-1234",
+    "role": "USER"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "username": "janesmith",
+    "password": "password456",
+    "email": "jane.smith@example.com",
+    "phone": "555-5678",
+    "role": "ADMIN"
+  },
+  {
+    "id": 3,
+    "name": "Alice Johnson",
+    "username": "alicejohnson",
+    "password": "password789",
+    "email": "alice.johnson@example.com",
+    "phone": "555-9876",
+    "role": "USER"
+  },
+  {
+    "id": 4,
+    "name": "John Doe",
+    "username": "lallalala",
+    "password": "password123",
+    "email": "john.doe@example.com",
+    "phone": "123-456-7890",
+    "role": "user"
+  },
+  {
+    "id": 5,
+    "name": "John Doe",
+    "username": "s,dkd",
+    "password": "password123",
+    "email": "john.doe@example.com",
+    "phone": "123-456-7890",
+    "role": "user"
+  }
+]

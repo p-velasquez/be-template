@@ -15,7 +15,8 @@ public enum UserResponseCode {
 
     USER_CREATED(HttpStatus.CREATED, "00", "user.created"),
     USER_ALREADY_EXISTS(HttpStatus.CONFLICT, "01", "user.already_exists"),
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "99", "internal_server_error"),;
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "99", "internal_server_error"),
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "98", "unauthorized");
 
     private final HttpStatus httpStatus;
     private final String code;
