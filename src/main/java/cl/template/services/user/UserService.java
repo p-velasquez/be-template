@@ -82,7 +82,7 @@ public class UserService implements IUserService {
     @Override
     public String getMyPokemonById(String id){
         Pokemon pokemon = iPokemonService.getPokemonByNameOrId(id).block();
-        return pokemon != null ? "Your pokemon is: ".concat(pokemon.getName()) : null;
+        return pokemon != null ? "Your pokemon is: ".concat(pokemon.getName()) : "There's no pokemon with your ID";
     }
 
 }

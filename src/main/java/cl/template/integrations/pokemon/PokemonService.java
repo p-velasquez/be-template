@@ -14,9 +14,13 @@ public class PokemonService implements IPokemonService {
 
     @Override
     public Mono<Pokemon> getPokemonByNameOrId(String nameOrId){
-        return webClient.get()
-                .uri("{nameOrId}", nameOrId)
-                .retrieve()
-                .bodyToMono(Pokemon.class);
+        try {
+            return webClient.get()
+                    .uri("{nameOrId}", nameOrId)
+                    .retrieve()
+                    .bodyToMono(Pokemon.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
